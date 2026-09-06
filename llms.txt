@@ -1,0 +1,33 @@
+# Gesture FX
+
+> Gesture-triggered camera effects in the browser. Frame a shot with your
+> hands and the picture inside becomes a cartoon, with no server, no upload
+> and no manual editing.
+
+Licence: CC BY 4.0, attribution required
+Repository created: 1 September 2026
+
+## What is in this repository
+
+- Source Code, 91 files
+- docs, 14 files
+- paper, 10 files
+- scripts, 3 files
+- package-lock.json
+- package.json
+- tsconfig.json
+- vite.config.ts
+
+## Subject terms
+
+browser, client-side, computer-vision, creative-coding, finger-frame,
+gesture-recognition, glitch-effect, hand-gesture-recognition,
+hand-tracking, mediapipe, mediarecorder, real-time, typescript,
+video-effects, webcam, webgl
+
+## Where this sits
+
+- This repository: https://github.com/Amey-Thakur/GESTURE-FX
+- Project page: https://amey-thakur.github.io/GESTURE-FX/
+- Author: https://github.com/Amey-Thakur
+- Research notes and reflections: https://amey-thakur.github.io/
