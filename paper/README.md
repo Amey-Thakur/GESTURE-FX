@@ -1,7 +1,15 @@
-# Preprint
+# The paper
 
 **Frame-Synchronous Hand Gesture Detection by Projected Winding Order**
 Amey Thakur · [ORCID 0000-0001-5644-1575](https://orcid.org/0000-0001-5644-1575)
+
+[![arXiv](https://img.shields.io/badge/arXiv-2609.13269-B31B1B)](https://arxiv.org/abs/2609.13269)
+
+Published as **arXiv:2609.13269** [cs.CV], September 2026.
+[Abstract](https://arxiv.org/abs/2609.13269) ·
+[PDF](https://arxiv.org/pdf/2609.13269) ·
+[HTML](https://arxiv.org/html/2609.13269v1) ·
+[DOI](https://doi.org/10.48550/arXiv.2609.13269)
 
 The paper behind this repository. It states the detection criterion as a theorem,
 proves its invariances, derives every free parameter of the stylisation from a

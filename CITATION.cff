@@ -3,7 +3,8 @@ title: >-
   GESTURE-FX: Gesture-Triggered Camera Effects in the Browser
 message: >-
   If you use this software or the gesture detection method it introduces, please
-  cite it using the metadata in this file.
+  cite the paper under preferred-citation below. To cite the software itself,
+  use the metadata in this file.
 type: software
 
 authors:
@@ -81,5 +82,24 @@ version: 1.0.0
 date-released: '2026-09-01'
 identifiers:
   - type: other
+    value: "arXiv:2609.13269"
+    description: "The paper that introduces the detection method."
+  - type: doi
+    value: 10.48550/arXiv.2609.13269
+    description: "The paper's DOI, issued by arXiv through DataCite."
+  - type: other
     value: "2026-09-01"
     description: "Date this repository was created on GitHub."
+
+preferred-citation:
+  type: article
+  title: "Frame-Synchronous Hand Gesture Detection by Projected Winding Order"
+  authors:
+    - given-names: Amey
+      family-names: Thakur
+      orcid: 'https://orcid.org/0000-0001-5644-1575'
+  year: 2026
+  month: 9
+  journal: "arXiv preprint arXiv:2609.13269"
+  doi: 10.48550/arXiv.2609.13269
+  url: 'https://arxiv.org/abs/2609.13269'

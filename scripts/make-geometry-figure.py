@@ -25,6 +25,7 @@ Run:
 
 Writes:
     docs/screenshots/geometry.png
+    docs/screenshots/geometry_light.png    with --light, for a social feed
 """
 
 from __future__ import annotations
@@ -46,6 +47,35 @@ TEXT_STRONG = (242, 245, 250)
 TEXT_SECONDARY = (154, 165, 184)
 TEXT_MUTED = (130, 141, 159)
 SKIN = (232, 195, 158)
+
+# The separator is white at a low alpha, and the palm slab is a wash that needs
+# more of itself to show on white than on black, so both move with the palette.
+RULE = (255, 255, 255, 18)
+SLAB_FILL, SLAB_EDGE = 34, 90
+
+# --- The light palette, from the paper's own figure colours ----------------
+#
+# Figure 1 of the paper is this drawing, and the paper declares its own pair of
+# accents for a white page because the interface cyan and magenta are too light
+# to read on one. Those are used here, so the light figure and the paper agree.
+LIGHT_PALETTE = {
+    'INK_950': (255, 255, 255),
+    'INK_900': (238, 241, 246),      # panelFill
+    'CYAN': (15, 166, 196),          # cyanAccent
+    'MAGENTA': (214, 46, 126),       # magentaAccent
+    'TEXT_STRONG': (11, 13, 18),
+    'TEXT_SECONDARY': (74, 74, 85),  # inkMuted
+    'TEXT_MUTED': (122, 132, 148),
+    'SKIN': (198, 150, 104),
+    'RULE': (0, 0, 0, 28),
+    'SLAB_FILL': 52,
+    'SLAB_EDGE': 130,
+}
+
+
+def use_light_palette() -> None:
+    """Rebinds the palette in place, so every drawing function follows."""
+    globals().update(LIGHT_PALETTE)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -116,7 +146,7 @@ def draw_panel(image: Image.Image, index: int, theta: float, caption: str, highl
 
     # Panel separator.
     if index > 0:
-        draw.line([(x0, 30), (x0, HEIGHT - 30)], fill=(255, 255, 255, 18), width=1)
+        draw.line([(x0, 30), (x0, HEIGHT - 30)], fill=RULE, width=1)
 
     points = {name: to_screen(project(p, theta), cx, cy, scale) for name, p in LANDMARKS.items()}
 
@@ -126,8 +156,8 @@ def draw_panel(image: Image.Image, index: int, theta: float, caption: str, highl
         draw.rounded_rectangle(
             (cx - 76 * width, cy - 92, cx + 76 * width, cy + 78),
             radius=max(4, int(26 * width)),
-            fill=SKIN + (34,),
-            outline=SKIN + (90,),
+            fill=SKIN + (SLAB_FILL,),
+            outline=SKIN + (SLAB_EDGE,),
             width=2,
         )
     else:
@@ -186,6 +216,11 @@ def draw_panel(image: Image.Image, index: int, theta: float, caption: str, highl
 
 
 def main() -> None:
+    light = '--light' in sys.argv
+
+    if light:
+        use_light_palette()
+
     image = Image.new('RGB', (WIDTH, HEIGHT), INK_950)
     draw = ImageDraw.Draw(image)
 
@@ -198,7 +233,8 @@ def main() -> None:
     draw_panel(image, 1, math.pi / 2, 'edge-on: the triangle has no area', True)
     draw_panel(image, 2, math.pi, 'back toward the camera: winding reversed', False)
 
-    target = os.path.join(ROOT, 'docs', 'screenshots', 'geometry.png')
+    name = 'geometry_light.png' if light else 'geometry.png'
+    target = os.path.join(ROOT, 'docs', 'screenshots', name)
     os.makedirs(os.path.dirname(target), exist_ok=True)
     image.save(target, 'PNG', optimize=True)
 

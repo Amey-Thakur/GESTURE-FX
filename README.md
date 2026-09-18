@@ -9,9 +9,10 @@
 Hand gestures detected on the frame they occur, composited into the video as it records.
 Entirely in the browser.
 
-**[Open GESTURE-FX](https://amey-thakur.github.io/GESTURE-FX/)** · **[The method](docs/GESTURES.md)** · **[Specification](docs/SPECIFICATION.md)**
+**[Open GESTURE-FX](https://amey-thakur.github.io/GESTURE-FX/)** · **[The paper](#the-paper)** · **[The method](docs/GESTURES.md)** · **[Specification](docs/SPECIFICATION.md)**
 
 <img alt="License" src="https://img.shields.io/github/license/Amey-Thakur/GESTURE-FX?color=lightgrey&label=License">
+<a href="https://arxiv.org/abs/2609.13269"><img alt="Paper on arXiv" src="https://img.shields.io/badge/arXiv-2609.13269-B31B1B"></a>
 <img alt="Frame styles" src="https://img.shields.io/badge/Frame%20Styles-7-2EE0FB">
 <img alt="Gestures and effects" src="https://img.shields.io/badge/Gestures-5%20%C3%97%207%20Effects-FF4D9D">
 <a href="https://github.com/Amey-Thakur"><img alt="Developed by Amey Thakur" src="https://img.shields.io/badge/Developed%20by-Amey%20Thakur-0969DA"></a>
@@ -32,7 +33,7 @@ Entirely in the browser.
 [Architecture](#architecture) &nbsp;·&nbsp;
 [Privacy](#privacy) &nbsp;·&nbsp;
 [Run it](#run-it) &nbsp;·&nbsp;
-[Paper](paper/)
+[Paper](#the-paper)
 
 <br>
 <br>
@@ -648,6 +649,46 @@ Two of them, in [`.github/`](.github/). Take either if you are writing about thi
 
 The first is the repository preview. The second suits anything about the method.
 Rebuild both with `python scripts/make-social-preview.py`.
+
+<br>
+<br>
+<br>
+
+## The paper
+
+The method here is published. It states the detection criterion as a theorem,
+proves the three invariances, gives the coverage result for the window when the
+hands cross, derives each free parameter of the stylisation from a noise
+statistic, and reports the detector against a corpus whose crossing times are
+known exactly.
+
+> **Frame-Synchronous Hand Gesture Detection by Projected Winding Order**
+> Amey Thakur. arXiv:2609.13269 [cs.CV], September 2026.
+> [Abstract](https://arxiv.org/abs/2609.13269) ·
+> [PDF](https://arxiv.org/pdf/2609.13269) ·
+> [HTML](https://arxiv.org/html/2609.13269v1) ·
+> [DOI](https://doi.org/10.48550/arXiv.2609.13269) ·
+> [Source](paper/)
+
+Every figure in it is drawn by a script in this repository, and the evaluation
+runs in the browser against the shipped detector modules rather than a
+reimplementation, so the two tables can be reproduced by
+[opening a page](https://amey-thakur.github.io/GESTURE-FX/evaluation.html).
+
+<details>
+<summary><strong>BibTeX</strong></summary>
+
+```bibtex
+@article{thakur2026gesturefx,
+  author  = {Thakur, Amey},
+  title   = {Frame-Synchronous Hand Gesture Detection by Projected Winding Order},
+  journal = {arXiv preprint arXiv:2609.13269},
+  year    = {2026},
+  doi     = {10.48550/arXiv.2609.13269}
+}
+```
+
+</details>
 
 <br>
 <br>

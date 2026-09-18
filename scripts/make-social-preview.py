@@ -32,6 +32,7 @@ costs a reader attention and tells them nothing about the software.
 
 Run:
     python scripts/make-social-preview.py
+    python scripts/make-social-preview.py --light    the pair for a social feed
 
 Reads:
     docs/screenshots/frame_styles.jpg        the contact sheet, eight panels
@@ -42,6 +43,12 @@ Writes:
     Source Code/public/social-preview.png    the copy the page links to
     .github/social-preview.png               the copy uploaded in settings
     .github/social-preview-method.png        the alternate, for posts about the method
+
+With --light, the same two cards on a white ground, for a feed:
+    docs/screenshots/social_preview_light.png
+    docs/screenshots/social_preview_method_light.png
+    .github/social-preview-light.png
+    .github/social-preview-method-light.png
 """
 
 from __future__ import annotations
@@ -64,6 +71,34 @@ MAGENTA = (255, 77, 157)
 TEXT_STRONG = (242, 245, 250)
 TEXT_SECONDARY = (154, 165, 184)
 TEXT_MUTED = (130, 141, 159)
+
+# Drawn as white at a low alpha over a dark ground, so both invert with it.
+FIELD = (255, 255, 255, 5)
+HAIRLINE = (255, 255, 255, 28)
+
+# --- The light palette, from the paper's own figure colours ----------------
+#
+# A dark card is right on a repository page and wrong in a feed, where a black
+# rectangle in a white timeline reads as a hole. The interface cyan and magenta
+# are too light to sit on white, which is why paper/main.tex declares a second
+# pair for its figures; those are the ones used here, so a reader who has seen
+# the paper recognises the card.
+LIGHT_PALETTE = {
+    'INK_950': (255, 255, 255),
+    'INK_900': (238, 241, 246),      # panelFill
+    'CYAN': (15, 166, 196),          # cyanAccent
+    'MAGENTA': (214, 46, 126),       # magentaAccent
+    'TEXT_STRONG': (11, 13, 18),
+    'TEXT_SECONDARY': (74, 74, 85),  # inkMuted
+    'TEXT_MUTED': (122, 132, 148),
+    'FIELD': (0, 0, 0, 6),
+    'HAIRLINE': (0, 0, 0, 38),
+}
+
+
+def use_light_palette() -> None:
+    """Rebinds the palette in place, so every drawing function follows."""
+    globals().update(LIGHT_PALETTE)
 
 # The offset the chromatic split applies, scaled for display type.
 SPLIT = 6
@@ -118,7 +153,7 @@ def draw_background(image: Image.Image) -> None:
     scan = ImageDraw.Draw(overlay)
 
     for y in range(0, HEIGHT, 3):
-        scan.line([(0, y), (WIDTH, y)], fill=(255, 255, 255, 5))
+        scan.line([(0, y), (WIDTH, y)], fill=FIELD)
 
     image.alpha_composite(overlay)
 
@@ -253,7 +288,7 @@ def draw_hero(image: Image.Image, top: int, height: int) -> None:
         draw.rounded_rectangle(
             (x, top, x + width - 1, top + height - 1),
             radius=8,
-            outline=(255, 255, 255, 28),
+            outline=HAIRLINE,
             width=1,
         )
 
@@ -435,16 +470,31 @@ def build_method_card() -> Image.Image:
 
 
 def main() -> None:
+    light = '--light' in sys.argv
+
+    if light:
+        use_light_palette()
+
     media = build_media_card().convert('RGB')
     method = build_method_card().convert('RGB')
 
-    targets = [
-        (media, os.path.join(ROOT, 'docs', 'screenshots', 'social_preview.png')),
-        (media, os.path.join(ROOT, 'Source Code', 'public', 'social-preview.png')),
-        (media, os.path.join(ROOT, '.github', 'social-preview.png')),
-        (method, os.path.join(ROOT, 'docs', 'screenshots', 'social_preview_method.png')),
-        (method, os.path.join(ROOT, '.github', 'social-preview-method.png')),
-    ]
+    if light:
+        # The dark cards keep their names, because GitHub and the application
+        # page both link to them. The light pair is for a feed.
+        targets = [
+            (media, os.path.join(ROOT, 'docs', 'screenshots', 'social_preview_light.png')),
+            (media, os.path.join(ROOT, '.github', 'social-preview-light.png')),
+            (method, os.path.join(ROOT, 'docs', 'screenshots', 'social_preview_method_light.png')),
+            (method, os.path.join(ROOT, '.github', 'social-preview-method-light.png')),
+        ]
+    else:
+        targets = [
+            (media, os.path.join(ROOT, 'docs', 'screenshots', 'social_preview.png')),
+            (media, os.path.join(ROOT, 'Source Code', 'public', 'social-preview.png')),
+            (media, os.path.join(ROOT, '.github', 'social-preview.png')),
+            (method, os.path.join(ROOT, 'docs', 'screenshots', 'social_preview_method.png')),
+            (method, os.path.join(ROOT, '.github', 'social-preview-method.png')),
+        ]
 
     for image, target in targets:
         os.makedirs(os.path.dirname(target), exist_ok=True)

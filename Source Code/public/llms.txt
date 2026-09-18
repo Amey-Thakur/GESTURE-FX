@@ -148,14 +148,24 @@ estimator's.
 - docs/BROWSER-SUPPORT.md, the tested device matrix and the known defects
 - docs/PRIVACY.md, what is processed and what is stored
 
-## Preprint
+## The paper
 
-A preprint accompanies the repository, in paper/. It proves the detection
-criterion and its invariances, gives the coverage result for the self-intersecting
-window, derives the three parameters of the stylisation from the noise statistics
-rather than fixing them by inspection, and states the condition under which a
-window tracked in one clip may be composited over a generatively restyled version
-of it.
+The method is published as arXiv:2609.13269 [cs.CV], September 2026,
+"Frame-Synchronous Hand Gesture Detection by Projected Winding Order", by Amey Thakur.
+Abstract: https://arxiv.org/abs/2609.13269. DOI: https://doi.org/10.48550/arXiv.2609.13269.
+The source is in paper/ in the repository.
+
+It proves the detection criterion and its invariances, gives the coverage result
+for the self-intersecting window, derives the three parameters of the stylisation
+from the noise statistics rather than fixing them by inspection, and states the
+condition under which a window tracked in one clip may be composited over a
+generatively restyled version of it.
+
+Every figure in the paper is drawn by a script in the repository, and the
+evaluation runs in a browser against the shipped detector modules, so its two
+tables can be reproduced at
+https://amey-thakur.github.io/GESTURE-FX/evaluation.html rather than taken on
+trust.
 
 ## Licence
 

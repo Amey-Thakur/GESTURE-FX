@@ -1,183 +1,198 @@
 {
-    "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
-    "@type": "SoftwareSourceCode",
-    "name": "GESTURE-FX: Gesture-Triggered Camera Effects in the Browser",
-    "description": "A browser application that recognises hand gestures in a live camera feed and composites a visual effect onto the video at the instant the gesture occurs, producing a finished recording that requires no editing. It introduces a geometric palm flip detector based on the winding order of the projected palm triangle, which identifies the exact frame of the gesture and is invariant to mirroring, hand scale and handedness without any calibration or training data. Detection, stylisation and recording run entirely on the client, with no server and no upload. Two auxiliary features are exceptions and are disabled by default: spoken command recognition, which uses the browser's own speech interface, and an optional delegated restyle, which sends one recording to a hosted model against a key the user supplies.",
-    "identifier": "GESTURE-FX",
-    "license": "https://spdx.org/licenses/MIT",
-    "programmingLanguage": [
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "GESTURE-FX: Gesture-Triggered Camera Effects in the Browser",
+  "description": "A browser application that recognises hand gestures in a live camera feed and composites a visual effect onto the video at the instant the gesture occurs, producing a finished recording that requires no editing. It introduces a geometric palm flip detector based on the winding order of the projected palm triangle, which identifies the exact frame of the gesture and is invariant to mirroring, hand scale and handedness without any calibration or training data. Detection, stylisation and recording run entirely on the client, with no server and no upload. Two auxiliary features are exceptions and are disabled by default: spoken command recognition, which uses the browser's own speech interface, and an optional delegated restyle, which sends one recording to a hosted model against a key the user supplies.",
+  "identifier": "GESTURE-FX",
+  "license": "https://spdx.org/licenses/MIT",
+  "programmingLanguage": [
+    {
+      "@type": "ComputerLanguage",
+      "name": "TypeScript"
+    },
+    {
+      "@type": "ComputerLanguage",
+      "name": "GLSL ES 3.00"
+    },
+    {
+      "@type": "ComputerLanguage",
+      "name": "CSS"
+    },
+    {
+      "@type": "ComputerLanguage",
+      "name": "HTML"
+    }
+  ],
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Amey",
+      "familyName": "Thakur",
+      "@id": "https://orcid.org/0000-0001-5644-1575"
+    }
+  ],
+  "dateCreated": "2026-08-31",
+  "dateReleased": "2026-09-01",
+  "codeRepository": "https://github.com/Amey-Thakur/GESTURE-FX",
+  "isPartOf": "https://amey-thakur.github.io/",
+  "developmentStatus": "active",
+  "runtimePlatform": [
+    "Web browser with WebGL 2 and WebAssembly"
+  ],
+  "applicationCategory": "MultimediaApplication",
+  "keywords": [
+    "gesture recognition",
+    "hand gesture recognition",
+    "hand tracking",
+    "finger frame",
+    "palm flip detection",
+    "gesture triggered video effects",
+    "real-time video effects",
+    "webcam effects",
+    "browser computer vision",
+    "client-side computer vision",
+    "on-device inference",
+    "non-photorealistic rendering",
+    "cartoon shader",
+    "white-box cartoonization",
+    "bilateral filter",
+    "difference of Gaussians",
+    "WebGL",
+    "WebGL 2",
+    "GLSL",
+    "MediaPipe",
+    "MediaRecorder",
+    "getUserMedia",
+    "canvas captureStream",
+    "TypeScript",
+    "WebAssembly",
+    "progressive web app",
+    "GitHub Pages",
+    "privacy preserving",
+    "no server",
+    "open source",
+    "zero crossing detection",
+    "temporal localisation",
+    "human computer interaction",
+    "Amey Thakur",
+    "ameythakur",
+    "amey-thakur",
+    "ameyarc",
+    "Browser",
+    "Client Side",
+    "Computer Vision",
+    "Creative Coding",
+    "Finger Frame",
+    "Gesture Recognition",
+    "Glitch Effect",
+    "Hand Gesture Recognition",
+    "Hand Tracking",
+    "Mediapipe",
+    "Mediarecorder",
+    "Real Time",
+    "Video Effects",
+    "Webcam",
+    "Jump to",
+    "Surface",
+    "Structure",
+    "Texture",
+    "Record",
+    "Generate",
+    "Composite",
+    "Median",
+    "Mirror",
+    "Scale",
+    "Handedness",
+    "Swipe",
+    "Fist",
+    "amey",
+    "finger frame effect",
+    "hand gesture camera effects",
+    "webcam video effects",
+    "cartoon filter"
+  ],
+  "url": "https://amey-thakur.github.io/GESTURE-FX/",
+  "issueTracker": "https://github.com/Amey-Thakur/GESTURE-FX/issues",
+  "maintainer": {
+    "@type": "Person",
+    "givenName": "Amey",
+    "familyName": "Thakur",
+    "@id": "https://orcid.org/0000-0001-5644-1575"
+  },
+  "copyrightHolder": {
+    "@type": "Person",
+    "givenName": "Amey",
+    "familyName": "Thakur"
+  },
+  "version": "1.0.0",
+  "softwareVersion": "1.0.0",
+  "datePublished": "2026-09-01",
+  "dateModified": "2026-09-01",
+  "operatingSystem": [
+    "Any",
+    "Web browser"
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "@mediapipe/tasks-vision",
+      "name": "MediaPipe Tasks Vision",
+      "version": "1.0.1",
+      "url": "https://www.npmjs.com/package/@mediapipe/tasks-vision"
+    }
+  ],
+  "applicationSubCategory": "Computer Vision",
+  "readme": "https://github.com/Amey-Thakur/GESTURE-FX/blob/main/README.md",
+  "isAccessibleForFree": true,
+  "relatedLink": [
+    "https://github.com/Amey-Thakur/GESTURE-FX/blob/main/docs/SPECIFICATION.md",
+    "https://github.com/Amey-Thakur/GESTURE-FX/blob/main/docs/GESTURES.md",
+    "https://github.com/Amey-Thakur/GESTURE-FX/blob/main/docs/EFFECTS.md",
+    "https://github.com/Amey-Thakur/GESTURE-FX/blob/main/docs/BROWSER-SUPPORT.md"
+  ],
+  "softwareHelp": "https://github.com/Amey-Thakur/GESTURE-FX#readme",
+  "downloadUrl": "https://github.com/Amey-Thakur/GESTURE-FX/archive/refs/heads/main.zip",
+  "releaseNotes": "https://github.com/Amey-Thakur/GESTURE-FX/releases",
+  "contIntegration": "https://github.com/Amey-Thakur/GESTURE-FX/actions",
+  "inLanguage": "en",
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "name": "White-Box Cartoonization Using an Extended GAN Framework",
+      "author": [
         {
-            "@type": "ComputerLanguage",
-            "name": "TypeScript"
+          "@type": "Person",
+          "givenName": "Amey",
+          "familyName": "Thakur"
         },
         {
-            "@type": "ComputerLanguage",
-            "name": "GLSL ES 3.00"
+          "@type": "Person",
+          "givenName": "Mega",
+          "familyName": "Satish"
         },
         {
-            "@type": "ComputerLanguage",
-            "name": "CSS"
-        },
-        {
-            "@type": "ComputerLanguage",
-            "name": "HTML"
+          "@type": "Person",
+          "givenName": "Hasan",
+          "familyName": "Rizvi"
         }
-    ],
+      ],
+      "identifier": "https://doi.org/10.33564/IJEAST.2021.v05i12.049",
+      "datePublished": "2021"
+    }
+  ],
+  "referencePublication": {
+    "@type": "ScholarlyArticle",
+    "name": "Frame-Synchronous Hand Gesture Detection by Projected Winding Order",
     "author": [
-        {
-            "@type": "Person",
-            "givenName": "Amey",
-            "familyName": "Thakur",
-            "@id": "https://orcid.org/0000-0001-5644-1575"
-        }
-    ],
-    "dateCreated": "2026-08-31",
-    "dateReleased": "2026-09-01",
-    "codeRepository": "https://github.com/Amey-Thakur/GESTURE-FX",
-    "isPartOf": "https://amey-thakur.github.io/",
-    "developmentStatus": "active",
-    "runtimePlatform": [
-        "Web browser with WebGL 2 and WebAssembly"
-    ],
-    "applicationCategory": "MultimediaApplication",
-    "keywords": [
-        "gesture recognition",
-        "hand gesture recognition",
-        "hand tracking",
-        "finger frame",
-        "palm flip detection",
-        "gesture triggered video effects",
-        "real-time video effects",
-        "webcam effects",
-        "browser computer vision",
-        "client-side computer vision",
-        "on-device inference",
-        "non-photorealistic rendering",
-        "cartoon shader",
-        "white-box cartoonization",
-        "bilateral filter",
-        "difference of Gaussians",
-        "WebGL",
-        "WebGL 2",
-        "GLSL",
-        "MediaPipe",
-        "MediaRecorder",
-        "getUserMedia",
-        "canvas captureStream",
-        "TypeScript",
-        "WebAssembly",
-        "progressive web app",
-        "GitHub Pages",
-        "privacy preserving",
-        "no server",
-        "open source",
-        "zero crossing detection",
-        "temporal localisation",
-        "human computer interaction",
-        "Amey Thakur",
-        "ameythakur",
-        "amey-thakur",
-        "ameyarc",
-        "Browser",
-        "Client Side",
-        "Computer Vision",
-        "Creative Coding",
-        "Finger Frame",
-        "Gesture Recognition",
-        "Glitch Effect",
-        "Hand Gesture Recognition",
-        "Hand Tracking",
-        "Mediapipe",
-        "Mediarecorder",
-        "Real Time",
-        "Video Effects",
-        "Webcam",
-        "Jump to",
-        "Surface",
-        "Structure",
-        "Texture",
-        "Record",
-        "Generate",
-        "Composite",
-        "Median",
-        "Mirror",
-        "Scale",
-        "Handedness",
-        "Swipe",
-        "Fist",
-        "amey",
-        "finger frame effect",
-        "hand gesture camera effects",
-        "webcam video effects",
-        "cartoon filter"
-    ],
-    "url": "https://amey-thakur.github.io/GESTURE-FX/",
-    "issueTracker": "https://github.com/Amey-Thakur/GESTURE-FX/issues",
-    "maintainer": {
+      {
         "@type": "Person",
         "givenName": "Amey",
         "familyName": "Thakur",
         "@id": "https://orcid.org/0000-0001-5644-1575"
-    },
-    "copyrightHolder": {
-        "@type": "Person",
-        "givenName": "Amey",
-        "familyName": "Thakur"
-    },
-    "version": "1.0.0",
-    "softwareVersion": "1.0.0",
-    "datePublished": "2026-09-01",
-    "dateModified": "2026-09-01",
-    "operatingSystem": [
-        "Any",
-        "Web browser"
+      }
     ],
-    "softwareRequirements": [
-        {
-            "@type": "SoftwareApplication",
-            "identifier": "@mediapipe/tasks-vision",
-            "name": "MediaPipe Tasks Vision",
-            "version": "1.0.1",
-            "url": "https://www.npmjs.com/package/@mediapipe/tasks-vision"
-        }
-    ],
-    "applicationSubCategory": "Computer Vision",
-    "readme": "https://github.com/Amey-Thakur/GESTURE-FX/blob/main/README.md",
-    "isAccessibleForFree": true,
-    "relatedLink": [
-        "https://github.com/Amey-Thakur/GESTURE-FX/blob/main/docs/SPECIFICATION.md",
-        "https://github.com/Amey-Thakur/GESTURE-FX/blob/main/docs/GESTURES.md",
-        "https://github.com/Amey-Thakur/GESTURE-FX/blob/main/docs/EFFECTS.md",
-        "https://github.com/Amey-Thakur/GESTURE-FX/blob/main/docs/BROWSER-SUPPORT.md"
-    ],
-    "softwareHelp": "https://github.com/Amey-Thakur/GESTURE-FX#readme",
-    "downloadUrl": "https://github.com/Amey-Thakur/GESTURE-FX/archive/refs/heads/main.zip",
-    "releaseNotes": "https://github.com/Amey-Thakur/GESTURE-FX/releases",
-    "contIntegration": "https://github.com/Amey-Thakur/GESTURE-FX/actions",
-    "inLanguage": "en",
-    "citation": [
-        {
-            "@type": "ScholarlyArticle",
-            "name": "White-Box Cartoonization Using an Extended GAN Framework",
-            "author": [
-                {
-                    "@type": "Person",
-                    "givenName": "Amey",
-                    "familyName": "Thakur"
-                },
-                {
-                    "@type": "Person",
-                    "givenName": "Mega",
-                    "familyName": "Satish"
-                },
-                {
-                    "@type": "Person",
-                    "givenName": "Hasan",
-                    "familyName": "Rizvi"
-                }
-            ],
-            "identifier": "https://doi.org/10.33564/IJEAST.2021.v05i12.049",
-            "datePublished": "2021"
-        }
-    ]
+    "identifier": "https://doi.org/10.48550/arXiv.2609.13269",
+    "url": "https://arxiv.org/abs/2609.13269",
+    "datePublished": "2026-09-07"
+  }
 }
