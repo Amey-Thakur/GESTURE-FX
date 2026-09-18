@@ -121,9 +121,9 @@ being recorded and not in a file produced afterwards.
 > [Repository](https://github.com/Amey-Thakur/WHITE-BOX-CARTOONIZATION) ·
 > [Preprint](https://arxiv.org/abs/2107.04551)
 >
-> They did not work on GESTURE-FX, which is my own. What is new here is the
-> closed-form construction of each representation and the derivation of the
-> three constants that govern them, which [the paper](paper/) sets out in full.
+> What is new here is the closed-form construction of each representation and
+> the derivation of the three constants that govern them, which
+> [the paper](paper/) sets out in full.
 
 <br>
 
