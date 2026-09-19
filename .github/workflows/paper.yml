@@ -66,9 +66,19 @@ jobs:
           fi
           echo 'Every citation and reference resolved.'
 
-      - name: Upload the PDF
+      # Only on a pull request, and only for a week.
+      #
+      # On a push to main the built PDF is already committed at the same commit,
+      # so an artifact of it is a second copy of a file anyone can open in the
+      # repository, held for ninety days by default and counted against the
+      # account's Actions storage. A pull request is the case where the artifact
+      # is the only way to see the result, because the branch carries the source
+      # change without a rebuilt PDF beside it.
+      - name: Upload the PDF, for pull requests only
+        if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
         with:
           name: preprint
           path: paper/main.pdf
+          retention-days: 7
           if-no-files-found: error

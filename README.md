@@ -632,7 +632,8 @@ One file and one line, by construction.
 
 ## Preview cards
 
-Two of them, in [`.github/`](.github/). Take either if you are writing about this.
+Four of them, in [`.github/`](.github/): two cards, each on a dark ground and on
+a light one. Take whichever suits where it is going.
 
 <div align="center">
 <br>
@@ -648,7 +649,25 @@ Two of them, in [`.github/`](.github/). Take either if you are writing about thi
 </div>
 
 The first is the repository preview. The second suits anything about the method.
-Rebuild both with `python scripts/make-social-preview.py`.
+
+Each also exists on a white ground, as `social-preview-light.png` and
+`social-preview-method-light.png`. A dark card is right on a repository page and
+wrong in a social feed, where a black rectangle in a white timeline reads as a
+hole, so the light pair is the one to post. Their accents are the pair
+`paper/main.tex` declares for its own figures, because the interface cyan and
+magenta are too light to read on white.
+
+<div align="center">
+<br>
+<img src="docs/screenshots/social_preview_method_light.png" alt="The same palm flip signal card on a white ground, with the darker accent pair the paper uses for print" width="900">
+<br>
+<em>The method card on a white ground, for a feed.</em>
+<br><br>
+</div>
+
+Rebuild the dark pair with `python scripts/make-social-preview.py`, and the
+light pair by adding `--light`. `docs/screenshots/geometry.png`, which is
+Figure 1 of the paper, takes the same flag.
 
 <br>
 <br>
