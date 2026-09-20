@@ -9,7 +9,7 @@
 Hand gestures detected on the frame they occur, composited into the video as it records.
 Entirely in the browser.
 
-**[Open GESTURE-FX](https://amey-thakur.github.io/GESTURE-FX/)** · **[The paper](#the-paper)** · **[The method](docs/GESTURES.md)** · **[Specification](docs/SPECIFICATION.md)**
+**[Open GESTURE-FX](https://amey-thakur.github.io/GESTURE-FX/)** · **[The explainer](#the-explainer)** · **[The paper](#the-paper)** · **[The method](docs/GESTURES.md)** · **[Specification](docs/SPECIFICATION.md)**
 
 <img alt="License" src="https://img.shields.io/github/license/Amey-Thakur/GESTURE-FX?color=lightgrey&label=License">
 <a href="https://arxiv.org/abs/2609.13269"><img alt="Paper on arXiv" src="https://img.shields.io/badge/arXiv-2609.13269-B31B1B"></a>
@@ -33,6 +33,7 @@ Entirely in the browser.
 [Architecture](#architecture) &nbsp;·&nbsp;
 [Privacy](#privacy) &nbsp;·&nbsp;
 [Run it](#run-it) &nbsp;·&nbsp;
+[Explainer](#the-explainer) &nbsp;·&nbsp;
 [Paper](#the-paper)
 
 <br>
@@ -668,6 +669,45 @@ magenta are too light to read on white.
 Rebuild the dark pair with `python scripts/make-social-preview.py`, and the
 light pair by adding `--light`. `docs/screenshots/geometry.png`, which is
 Figure 1 of the paper, takes the same flag.
+
+<br>
+<br>
+<br>
+
+## The explainer
+
+A thirty-nine second account of the argument: label each frame and you get an
+interval, three landmarks span a triangle, its signed area is one scalar, the
+tracker looks twenty-four times a second, and the crossing is dated six times
+more finely than it is sampled.
+
+<div align="center">
+<br>
+<a href="https://github.com/Amey-Thakur/GESTURE-FX/raw/main/.github/media/gesture-explainer.mp4">
+<img src=".github/media/gesture-cover.png" alt="Explainer film: a gesture is not a label, it is an instant. The signed area of the triangle spanned by wrist, index knuckle and little knuckle crosses zero exactly once as the palm turns, and that crossing is the gesture. 95.0 percent of flips detected, no false positives across 240 near misses, 6.7 millisecond mean error" width="88%">
+</a>
+<br>
+<em>Click the frame to play it, or <a href="https://github.com/Amey-Thakur/GESTURE-FX/raw/main/.github/media/gesture-explainer.mp4">download the file</a>.</em>
+<br><br>
+</div>
+
+The four minute version of that argument is the paper. The four second version
+is the loop below: the hand turns, the triangle its landmarks span collapses,
+and the scalar crosses zero at that instant.
+
+<div align="center">
+<br>
+<img src=".github/media/gesture-loop.gif" alt="A loop: the palm turns from facing the lens to facing away, the triangle spanned by its three landmarks collapses to a line and reverses, and the signed area curve beside it descends through zero at the edge-on instant" width="88%">
+<br>
+<em>The same zero, in four seconds. The band of light travels the curve the
+signal is computed from.</em>
+<br><br>
+</div>
+
+All three are in [`.github/media/`](.github/media/): the film at 1920 by 1080,
+the loop at 960 by 540 and the cover still. The film and the loop are drawn by
+[`scripts/`](scripts/) from the same three-landmark model the paper defines, so
+the zero in them is the zero the theorem is about, not a keyframe.
 
 <br>
 <br>
