@@ -13,6 +13,7 @@ Entirely in the browser.
 
 <img alt="License" src="https://img.shields.io/github/license/Amey-Thakur/GESTURE-FX?color=lightgrey&label=License">
 <a href="https://arxiv.org/abs/2609.13269"><img alt="Paper on arXiv" src="https://img.shields.io/badge/arXiv-2609.13269-B31B1B"></a>
+<a href="https://huggingface.co/spaces/ameythakur/GESTURE-FX"><img alt="Run it on Hugging Face Spaces" src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Space-FFD21E"></a>
 <img alt="Frame styles" src="https://img.shields.io/badge/Frame%20Styles-7-2EE0FB">
 <img alt="Gestures and effects" src="https://img.shields.io/badge/Gestures-5%20%C3%97%207%20Effects-FF4D9D">
 <a href="https://github.com/Amey-Thakur"><img alt="Developed by Amey Thakur" src="https://img.shields.io/badge/Developed%20by-Amey%20Thakur-0969DA"></a>
@@ -608,6 +609,19 @@ The 11.8 MB runtime and 7.8 MB model load from public CDNs. To serve them from o
 ```bash
 npm run vendor:models
 ```
+
+<br>
+
+### 🤗 On Hugging Face
+
+The same build runs as a static Space, for opening in one press rather than cloning.
+
+**[huggingface.co/spaces/ameythakur/GESTURE-FX](https://huggingface.co/spaces/ameythakur/GESTURE-FX)**
+
+Nothing there is cut down for hosting. It is what this repository publishes, the evaluation page included, so the two tables can be reproduced from the Space as readily as from here.
+
+> [!TIP]
+> The Space carries the paper's arXiv identifier, which is what lists it on [the paper's own page](https://huggingface.co/papers/2609.13269) under **Spaces citing this paper**. Hugging Face grants the camera to the embedded frame, so it runs on the Space page itself and not only at its own address.
 
 <br>
 <br>
