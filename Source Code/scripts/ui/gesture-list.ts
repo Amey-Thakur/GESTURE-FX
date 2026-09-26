@@ -155,12 +155,38 @@ export class GestureList {
         row.className = 'chip';
         row.dataset.gesture = detector.id;
 
-        row.append(
-            this.createToggle(detector, handlers.onToggle, row),
-            this.createEffectMenu(detector, handlers.onRebind),
-        );
+        const toggle = this.createToggle(detector, handlers.onToggle, row);
+        const menu = this.createEffectMenu(detector, handlers.onRebind);
+
+        // The palm flip is the one the paper is about: the criterion, the
+        // theorem and every measured figure describe the instant a palm turns
+        // over. It was indistinguishable from the other four, so it carries the
+        // accent and a link to the paper. The link goes before the menu rather
+        // than after it, because the menus are what the column is read down and
+        // they keep their single right edge.
+        if (detector.id === 'palm-flip') {
+            row.dataset.signature = 'true';
+            row.append(toggle, this.createPaperLink(), menu);
+        } else {
+            row.append(toggle, menu);
+        }
 
         return row;
+    }
+
+    /** The paper behind the palm flip, linked from the row it describes. */
+    private createPaperLink(): HTMLAnchorElement {
+        const link = document.createElement('a');
+        link.className = 'chip__paper';
+        link.href = 'https://arxiv.org/abs/2609.13269';
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.textContent = 'arXiv';
+        link.dataset.tooltip =
+            'This gesture is the subject of the paper. Its detection criterion is '
+            + 'stated as a theorem and measured against a corpus with exact crossing times.';
+        link.setAttribute('aria-label', 'Read the paper behind the palm flip, arXiv 2609.13269');
+        return link;
     }
 
     /** The icon, the name, and the switch that enables the gesture. */

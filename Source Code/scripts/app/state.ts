@@ -29,7 +29,7 @@
 export type AppState =
     /** Nothing has started; support is being probed. */
     | 'boot'
-    /** The intro guide is shown, before any permission is requested. */
+    /** The guide is open, asked for from "How it works". */
     | 'guide'
     /** The settings panel is open over whatever was showing. */
     | 'settings'

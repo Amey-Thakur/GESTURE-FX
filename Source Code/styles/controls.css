@@ -392,6 +392,32 @@
     color: var(--text-strong);
 }
 
+/* The palm flip is the gesture the paper proves, so it is the one row that
+   is not interchangeable with the others. */
+.chip[data-signature='true'] {
+    border-color: rgba(46, 224, 251, 0.45);
+    background: rgba(46, 224, 251, 0.06);
+}
+
+.chip__paper {
+    flex: 0 0 auto;
+    align-self: center;
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1px solid rgba(46, 224, 251, 0.40);
+    color: var(--cyan-400);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .4px;
+    text-decoration: none;
+    line-height: 1.5;
+}
+
+.chip__paper:hover,
+.chip__paper:focus-visible {
+    background: rgba(46, 224, 251, 0.16);
+}
+
 /* --- Gesture rows ------------------------------------------------------- */
 
 .chip {

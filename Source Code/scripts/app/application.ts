@@ -55,7 +55,6 @@ import { SettingsPanel } from '../ui/settings';
 import { shareApplication } from '../ui/share-app';
 import { Countdown } from '../ui/countdown';
 import { GestureList } from '../ui/gesture-list';
-import { hasSeenGuide, hasSeenTutorial, markGuideSeen, markTutorialSeen } from '../ui/guide';
 import { createFrameGuide, type FrameGuide } from '../ui/frame-guide';
 import { RestylePanel } from '../ui/restyle';
 import { Tutorial } from '../ui/tutorial';
@@ -351,11 +350,10 @@ export class Application {
         this.recordingSupport = probeRecording();
         this.applyRecordingSupport();
 
-        if (hasSeenGuide()) {
-            this.setState('permission');
-        } else {
-            this.setState('guide');
-        }
+        // Straight to the camera. The guide used to open itself on a first
+        // visit, which put a four-step card between the user and the thing
+        // they came to try. It is still one press away, under "How it works".
+        this.setState('permission');
     }
 
     private buildInterface(): void {
@@ -455,7 +453,6 @@ export class Application {
 
     private bindControls(): void {
         this.shell.dismissGuideButton.addEventListener('click', () => {
-            markGuideSeen();
             this.setState('permission');
         });
 
@@ -589,7 +586,7 @@ export class Application {
                 return;
             }
 
-            if (this.state === 'guide' && hasSeenGuide()) {
+            if (this.state === 'guide') {
                 this.setState('permission');
             }
         });
@@ -764,14 +761,20 @@ export class Application {
     /**
      * Returns to whatever was showing before a panel opened.
      *
-     * The method panel is reachable from the guide, which is reachable before
-     * the camera has been allowed, so the guide is a resumable state here as
-     * well. Returning to the permission or error state would re-show a card the
-     * user has already dealt with, so those fall through to the camera.
+     * Every panel is reachable from the masthead, which is reachable before the
+     * camera has been allowed, so the cards that come before it are resumable
+     * too. The permission card is the only way to start the camera and the
+     * error card is the only account of why it did not start: falling through
+     * to the camera from either one left the user on an empty stage with
+     * nothing to press and no way back short of reloading.
+     *
+     * What is not resumable is anything the application moves on from by
+     * itself. Loading ends when the model arrives and a take ends when it is
+     * stopped, so returning to either would restore a card that has already
+     * been overtaken.
      */
     private closePanel(): void {
-        const resumable: AppState[] = ['ready', 'review', 'guide'];
-
+        const resumable: AppState[] = ['ready', 'review', 'guide', 'permission', 'error'];
 
         this.setState(
             resumable.includes(this.stateBeforePanel) ? this.stateBeforePanel : 'ready',
@@ -934,13 +937,10 @@ export class Application {
         void this.applyAutoFrame();
         this.applyVoiceControl();
 
-        // Offered once, on the first visit that reaches a live camera. Here
-        // rather than after the guide, because the first step is the camera and
-        // there is nothing to observe until it is running.
-        if (!hasSeenTutorial()) {
-            markTutorialSeen();
-            this.tutorial.start();
-        }
+        // The walkthrough no longer opens itself. It was the second thing to
+        // dismiss on a first visit, and it is worth the most when something is
+        // not working rather than before anything has been tried, so it lives
+        // in Settings under "Try the controls".
     }
 
     /**

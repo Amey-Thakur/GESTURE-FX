@@ -14,9 +14,9 @@
   state change toggles the `hidden` attribute on a section that already exists,
   so there is no markup generated from strings and no template layer.
 
-  The overlays are declared in the order they can appear, which is also the
-  order a first visit encounters them: guide, loading, permission, error,
-  review.
+  The overlays are declared in the order they can appear: loading, permission,
+  error, review. The guide and the walkthrough are opened deliberately rather
+  than met on the way in, so they are declared with the panels above them.
 -->
 <html lang="en">
 
@@ -379,9 +379,9 @@
     <!-- Overlays                                                           -->
     <!-- ================================================================== -->
 
-    <!-- Intro guide, shown on a first visit and from the masthead thereafter -->
+    <!-- The guide, opened from "How it works" in the masthead -->
     <section class="overlay" data-role="overlay-guide" aria-labelledby="guide-title" hidden>
-        <div class="card card--wide" role="dialog" aria-modal="true">
+        <div class="card card--wide card--stack" role="dialog" aria-modal="true">
 
             <!--
               The finger frame is the first thing shown, not the third. It is
@@ -464,7 +464,7 @@
                 finished the moment you stop.
             </p>
 
-            <div class="guide__steps">
+            <div class="guide__steps card__scroll">
                 <div class="guide__step guide__step--feature">
                     <span class="guide__index">1</span>
                     <span class="guide__text">
@@ -534,14 +534,14 @@
     -->
     <section class="overlay overlay--coach" data-role="overlay-tutorial"
         aria-labelledby="tutorial-title" hidden>
-        <div class="card card--reading" role="dialog" aria-label="Try the controls">
+        <div class="card card--reading card--stack" role="dialog" aria-label="Try the controls">
             <h1 class="card__title" id="tutorial-title">Try the controls</h1>
             <p class="card__body">
                 Each step passes when this page actually sees it, and the camera
                 stays live throughout.
             </p>
 
-            <div class="tutorial" data-role="tutorial-host"></div>
+            <div class="tutorial card__scroll" data-role="tutorial-host"></div>
 
             <p class="tutorial__watch" data-role="tutorial-watch" data-seen="false">
                 <span class="tutorial__dot"></span>
@@ -556,14 +556,14 @@
     </section>
 
     <section class="overlay" data-role="overlay-settings" aria-labelledby="settings-title" hidden>
-        <div class="card card--wide" role="dialog" aria-modal="true">
+        <div class="card card--wide card--stack" role="dialog" aria-modal="true">
             <h1 class="card__title" id="settings-title">Settings</h1>
             <p class="card__body">
                 Every option here changes how the application behaves and is remembered on this
                 device.
             </p>
 
-            <div class="settings" data-role="settings-list"></div>
+            <div class="settings card__scroll" data-role="settings-list"></div>
 
             <div class="card__actions">
                 <button class="button button--primary" data-action="close-settings">Done</button>
@@ -581,19 +581,26 @@
                     rel="noopener">Amey Thakur</a>.
                 Open source under the MIT licence.
             </p>
+
+            <p class="card__footnote">
+                The palm flip is detected by the criterion proved in
+                <a class="link" href="https://arxiv.org/abs/2609.13269" target="_blank"
+                    rel="noopener">arXiv:2609.13269</a>,
+                <em>Frame-Synchronous Hand Gesture Detection by Projected Winding Order</em>.
+            </p>
         </div>
     </section>
 
     <!-- The method: what the application computes, and why -->
     <section class="overlay" data-role="overlay-method" aria-labelledby="method-title" hidden>
-        <div class="card card--reading" role="dialog" aria-modal="true">
+        <div class="card card--reading card--stack" role="dialog" aria-modal="true">
             <h1 class="card__title" id="method-title">How it works</h1>
             <p class="card__body">
                 Six steps run on every frame, all of them on this device. Each one is
                 a piece of arithmetic small enough to state exactly.
             </p>
 
-            <ol class="method">
+            <ol class="method card__scroll">
 
                 <!-- 1 -->
                 <li class="method__step">
@@ -790,80 +797,84 @@
 
     <!-- The optional restyle. The only part of the application that is not local -->
     <section class="overlay" data-role="overlay-restyle" aria-labelledby="restyle-title" hidden>
-        <div class="card card--wide" role="dialog" aria-modal="true">
+        <div class="card card--wide card--stack" role="dialog" aria-modal="true">
             <h1 class="card__title" id="restyle-title">Restyle with Gemini</h1>
             <p class="card__body">
                 A video model redraws the whole take, and the window your hands made
                 reveals it. Everything else here runs on your device. This does not.
             </p>
 
-            <div class="notice">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="1.9" stroke-linecap="round" aria-hidden="true">
-                    <circle cx="12" cy="12" r="9" />
-                    <path d="M12 8v5M12 16.2h.01" />
-                </svg>
-                <span>
-                    Your recording is uploaded to Google and generated against
-                    <strong>your own key</strong>, so it is billed to you and takes a few
-                    minutes. Nothing is sent until you press Generate.
-                </span>
-            </div>
-
-            <!-- The key -->
-            <div class="field" data-role="restyle-key-entry">
-                <label class="field__label" for="restyle-key">Your Gemini API key</label>
-                <p class="field__hint">
-                    Held in this tab and sent only to Google. It is never written to this
-                    repository, a log, or anywhere else.
-                    <a class="link" data-role="restyle-key-link" href="https://aistudio.google.com/apikey"
-                        target="_blank" rel="noopener">Get a key</a>.
-                </p>
-
-                <div class="field__row">
-                    <input class="input" id="restyle-key" type="password" inputmode="text"
-                        autocomplete="off" autocapitalize="off" spellcheck="false"
-                        placeholder="Paste your key" data-role="restyle-key">
-                    <button class="button" data-action="save-key">Save</button>
+            <!-- Everything above the progress bar scrolls, so Generate and Close stay on screen -->
+            <div class="card__scroll">
+                <div class="notice">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.9" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M12 8v5M12 16.2h.01" />
+                    </svg>
+                    <span>
+                        Your recording is uploaded to Google and generated against
+                        <strong>your own key</strong>, so it is billed to you and takes a few
+                        minutes. Nothing is sent until you press Generate.
+                    </span>
                 </div>
 
-                <label class="checkbox">
-                    <input type="checkbox" data-role="restyle-remember">
-                    <span>Remember on this device. Leave this off on a shared machine.</span>
-                </label>
-            </div>
+                <!-- The key -->
+                <div class="field" data-role="restyle-key-entry">
+                    <label class="field__label" for="restyle-key">Your Gemini API key</label>
+                    <p class="field__hint">
+                        Held in this tab and sent only to Google. It is never written to this
+                        repository, a log, or anywhere else.
+                        <a class="link" data-role="restyle-key-link" href="https://aistudio.google.com/apikey"
+                            target="_blank" rel="noopener">Get a key</a>.
+                    </p>
 
-            <div class="field field--row" data-role="restyle-key-loaded" hidden>
-                <span class="field__text">
-                    <span class="field__label">Key loaded</span>
-                    <span class="field__hint" data-role="restyle-key-state"></span>
-                </span>
-                <button class="button button--compact" data-action="forget-key">Forget</button>
-            </div>
+                    <div class="field__row">
+                        <input class="input" id="restyle-key" type="password" inputmode="text"
+                            autocomplete="off" autocapitalize="off" spellcheck="false"
+                            placeholder="Paste your key" data-role="restyle-key">
+                        <button class="button" data-action="save-key">Save</button>
+                    </div>
 
-            <!-- The look -->
-            <div class="field">
-                <span class="field__label" id="restyle-style-label">Look</span>
-                <p class="field__hint">
-                    Every prompt carries the same alignment constraint, which is what keeps
-                    the generated frame under the window instead of beside it.
-                </p>
-                <div class="chips" role="radiogroup" aria-labelledby="restyle-style-label"
-                    data-role="restyle-styles"></div>
-                <textarea class="input input--area" rows="3" data-role="restyle-custom"
-                    aria-label="Describe the look you want" placeholder="Describe the look you want"
-                    hidden></textarea>
-            </div>
+                    <label class="checkbox">
+                        <input type="checkbox" data-role="restyle-remember">
+                        <span>Remember on this device. Leave this off on a shared machine.</span>
+                    </label>
+                </div>
 
-            <details class="advanced">
-                <summary class="advanced__summary">Model</summary>
-                <p class="field__hint">
-                    A preview model, so its name changes. If generation returns a 404, the
-                    current name is in Google’s documentation.
-                </p>
-                <input class="input" data-role="restyle-model" autocomplete="off" spellcheck="false"
-                    aria-label="Model name">
-            </details>
+                <div class="field field--row" data-role="restyle-key-loaded" hidden>
+                    <span class="field__text">
+                        <span class="field__label">Key loaded</span>
+                        <span class="field__hint" data-role="restyle-key-state"></span>
+                    </span>
+                    <button class="button button--compact" data-action="forget-key">Forget</button>
+                </div>
+
+                <!-- The look -->
+                <div class="field">
+                    <span class="field__label" id="restyle-style-label">Look</span>
+                    <p class="field__hint">
+                        Every prompt carries the same alignment constraint, which is what keeps
+                        the generated frame under the window instead of beside it.
+                    </p>
+                    <div class="chips" role="radiogroup" aria-labelledby="restyle-style-label"
+                        data-role="restyle-styles"></div>
+                    <textarea class="input input--area" rows="3" data-role="restyle-custom"
+                        aria-label="Describe the look you want" placeholder="Describe the look you want"
+                        hidden></textarea>
+                </div>
+
+                <details class="advanced">
+                    <summary class="advanced__summary">Model</summary>
+                    <p class="field__hint">
+                        A preview model, so its name changes. If generation returns a 404, the
+                        current name is in Google’s documentation.
+                    </p>
+                    <input class="input" data-role="restyle-model" autocomplete="off" spellcheck="false"
+                        aria-label="Model name">
+                </details>
+
+            </div>
 
             <div class="progress" data-role="restyle-progress" hidden>
                 <div class="loader__track">

@@ -181,6 +181,79 @@
     text-align: left;
 }
 
+/* Four steps stacked run to about 880px, which with the demo above them put
+   the card at 1100px: on a laptop it opened as a dialog with its own scrollbar
+   and its buttons below the fold. Two columns once there is width for them. */
+@media (min-width: 760px) {
+    .guide__steps {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/*
+ * A card holding more than the viewport is tall.
+ *
+ * Left to itself the card scrolls as a whole, which puts the way out of it
+ * below the fold: settings kept "Done" 356px down the card and the method
+ * card kept it 1500px down, so leaving either meant scrolling to the end of
+ * something you had decided not to read. A stacked card scrolls its middle
+ * instead. The title stays at the top, the buttons stay at the bottom, and
+ * the one child marked as the scroller takes whatever height is left.
+ */
+.card--stack {
+    display: flex;
+    flex-direction: column;
+
+    /*
+     * The frame scrolls only as a last resort. On a phone held sideways even
+     * the parts that do not scroll can be taller than the card, and at that
+     * point scrolling the whole thing is the honest answer: hidden would cut
+     * the text off with no way to reach it.
+     */
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.card--stack > * {
+    flex: 0 0 auto;
+}
+
+.card--stack > .card__scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding-inline-end: var(--space-2);
+}
+
+/* The rule the content scrolls under, so a cut line reads as a boundary
+   rather than as the card ending. */
+.card--stack > .card__actions {
+    margin-top: var(--space-5);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--line-subtle);
+}
+
+/* The demo is the first thing to give up its height when there is none. */
+@media (max-height: 820px) {
+    .card--stack > .demo {
+        display: none;
+    }
+}
+
+/* Below that, the card gives up its own padding before it gives up anything
+   the reader came for. A phone held sideways has 360px of height for a dialog
+   that was drawn for a laptop. */
+@media (max-height: 560px) {
+    .card--stack {
+        padding: var(--space-5);
+    }
+
+    .card--stack > .card__actions {
+        margin-top: var(--space-4);
+        padding-top: var(--space-4);
+    }
+}
+
 .guide__step {
     display: grid;
     grid-template-columns: 28px minmax(0, 1fr);
@@ -1183,6 +1256,7 @@
      */
     .overlay--coach .card__actions {
         margin-top: var(--space-4);
+        padding-top: var(--space-3);
         gap: var(--space-2);
     }
 

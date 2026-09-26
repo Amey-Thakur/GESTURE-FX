@@ -388,9 +388,10 @@ start a second take, and after either fires there is a two second lock-out.
 
 ### Find out what works on your device
 
-The first time the camera goes live you are offered a walkthrough, and it is in
-settings under **Try the controls** afterwards. Eleven steps: show a hand, each
-of the five gestures, both recording poses, then the microphone and speech.
+The walkthrough is in settings under **Try the controls**, where it is worth
+the most: when something is not firing and you want to know whether it is you,
+the gesture or the browser. Eleven steps: show a hand, each of the five
+gestures, both recording poses, then the microphone and speech.
 
 Every step is an observation rather than an instruction. The gesture steps pass
 when that detector fires through the shipped engine. The microphone step draws

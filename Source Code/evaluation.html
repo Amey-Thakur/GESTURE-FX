@@ -366,6 +366,19 @@
             text-align: right;
         }
 
+        /*
+         * Four columns and a sheet's padding do not both fit a phone: the
+         * results table held the page 19px wider than the screen, so the whole
+         * page slid sideways. The padding is what gives way, because the
+         * figures are the reason the table is here.
+         */
+        @media (max-width: 520px) {
+            th,
+            td {
+                padding: var(--space-2);
+            }
+        }
+
         .verdict {
             margin-top: var(--space-6);
             padding: var(--space-4) var(--space-5);

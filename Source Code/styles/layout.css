@@ -347,6 +347,33 @@
 /* --- Phone control bar --------------------------------------------------- */
 
 /**
+ * The masthead does not fit a phone.
+ *
+ * At its narrowest it measures 416px: the wordmark, five controls, and the
+ * shell padding around them. On a 375px screen that put the share button and
+ * the source link past the right edge, and because the body clips rather than
+ * scrolls they could not be reached at all. The wordmark is what gives way.
+ * The mark beside it identifies the application on its own, and the name is
+ * still read out: it is taken out of the layout rather than out of the
+ * document, so the link keeps its accessible name.
+ */
+@media (max-width: 440px) {
+    .masthead {
+        padding-inline: var(--space-4);
+    }
+
+    .brand__name {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+    }
+}
+
+/**
  * On a narrow screen the aspect selector is wider than an equal third of the
  * bar, which pushes the outer columns apart and takes the record button off
  * centre. Moving the selector onto its own row restores the symmetry and keeps
