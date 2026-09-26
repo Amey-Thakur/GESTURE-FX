@@ -399,31 +399,76 @@
     background: rgba(46, 224, 251, 0.06);
 }
 
+/*
+ * The paper, on a line of its own under the name and the menu.
+ *
+ * It spans both columns, so it neither narrows the name nor narrows the menu,
+ * and the row above it stays identical to the five it sits among.
+ */
 .chip__paper {
-    flex: 0 0 auto;
-    align-self: center;
-    padding: 3px 9px;
-    border-radius: 999px;
-    border: 1px solid rgba(46, 224, 251, 0.40);
-    color: var(--cyan-400);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .4px;
+    grid-column: 1 / -1;
+
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+
+    padding-top: var(--space-2);
+    border-top: 1px solid rgba(46, 224, 251, 0.20);
+
     text-decoration: none;
-    line-height: 1.5;
 }
 
-.chip__paper:hover,
-.chip__paper:focus-visible {
-    background: rgba(46, 224, 251, 0.16);
+/*
+ * The published mark, sized by its height so its own proportions set the width.
+ *
+ * The nudge is optical. The X of the logo overshoots the other four letters at
+ * both ends, so the box it is drawn in runs from the top of the X to its foot
+ * while the word itself sits between 9 and 79 of those 111 units. Centring the
+ * box therefore centres the X and leaves the word riding a little high over the
+ * number beside it. A pixel down puts the word on the number's line.
+ */
+.chip__paper-mark {
+    flex: 0 0 auto;
+    height: 15px;
+    width: auto;
+    transform: translateY(1px);
+}
+
+.chip__paper-id {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-secondary);
+
+    transition: color var(--duration-fast) var(--ease-out);
+}
+
+.chip__paper:hover .chip__paper-id,
+.chip__paper:focus-visible .chip__paper-id {
+    color: var(--text-strong);
 }
 
 /* --- Gesture rows ------------------------------------------------------- */
 
+/*
+ * Two columns, the same two in every row.
+ *
+ * The menu column is one fixed width rather than a width per row, because the
+ * rows are read down rather than across. Menus that each sized themselves to
+ * their own effect name left five different left edges down the column, and
+ * the longest of them still cut its label short. A single width, wide enough
+ * for the longest effect there is, gives the column both of its edges and
+ * leaves the name the same width in every row.
+ */
 .chip {
-    display: flex;
+    --chip-menu: 124px;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--chip-menu);
     align-items: center;
-    gap: var(--space-2);
+    column-gap: var(--space-2);
+    row-gap: var(--space-1);
 
     min-height: 52px;
     padding: var(--space-2);
@@ -433,7 +478,6 @@
     background-color: var(--ink-850);
 
     scroll-snap-align: start;
-    flex: 0 0 auto;
 
     transition:
         border-color var(--duration-fast) var(--ease-out),
@@ -488,11 +532,19 @@
 }
 
 .chip__label {
+    min-width: 0;
+
     font-size: var(--text-sm);
     font-weight: 600;
     color: var(--text-strong);
     line-height: 1.25;
+
+    /* The column is sized for the longest of these names, so the ellipsis is a
+       floor rather than a behaviour: if a name ever outgrows the column it is
+       cut cleanly instead of running under the control beside it. */
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /**
@@ -510,10 +562,10 @@
  * there is nothing to choose.
  */
 .chip__note {
-    margin-left: auto;
     min-height: 36px;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     padding: 0 var(--space-3);
 
     border: 1px dashed var(--line-subtle);
@@ -528,8 +580,7 @@
 
 .chip__select {
     min-width: 0;
-    margin-left: auto;
-    max-width: 136px;
+    width: 100%;
     min-height: 36px;
     padding: 0 26px 0 var(--space-3);
 

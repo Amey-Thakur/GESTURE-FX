@@ -29,7 +29,7 @@
 import { EFFECTS } from '../effects/registry';
 import type { EffectId } from '../effects/types';
 import type { GestureDetector, GestureId } from '../gestures/types';
-import { GESTURE_ICONS, RECORDING_CUE_ICON } from './icons';
+import { ARXIV_MARK, GESTURE_ICONS, RECORDING_CUE_ICON } from './icons';
 
 /** How long a row stays lit after its gesture fires, in milliseconds. */
 const FLASH_MS = 700;
@@ -158,17 +158,22 @@ export class GestureList {
         const toggle = this.createToggle(detector, handlers.onToggle, row);
         const menu = this.createEffectMenu(detector, handlers.onRebind);
 
+        row.append(toggle, menu);
+
         // The palm flip is the one the paper is about: the criterion, the
         // theorem and every measured figure describe the instant a palm turns
         // over. It was indistinguishable from the other four, so it carries the
-        // accent and a link to the paper. The link goes before the menu rather
-        // than after it, because the menus are what the column is read down and
-        // they keep their single right edge.
+        // accent and the mark.
+        //
+        // The mark goes on a line of its own beneath the two controls. Set
+        // beside them it had to come out of the width of the name or the width
+        // of the menu, and in a 254px panel there was no width to take: it
+        // landed on top of the word it was meant to annotate. A line of its own
+        // costs height, which the panel has, and leaves every row's name and
+        // menu on exactly the same two edges.
         if (detector.id === 'palm-flip') {
             row.dataset.signature = 'true';
-            row.append(toggle, this.createPaperLink(), menu);
-        } else {
-            row.append(toggle, menu);
+            row.append(this.createPaperLink());
         }
 
         return row;
@@ -181,11 +186,18 @@ export class GestureList {
         link.href = 'https://arxiv.org/abs/2609.13269';
         link.target = '_blank';
         link.rel = 'noopener';
-        link.textContent = 'arXiv';
         link.dataset.tooltip =
             'This gesture is the subject of the paper. Its detection criterion is '
             + 'stated as a theorem and measured against a corpus with exact crossing times.';
         link.setAttribute('aria-label', 'Read the paper behind the palm flip, arXiv 2609.13269');
+
+        const identifier = document.createElement('span');
+        identifier.className = 'chip__paper-id';
+        identifier.textContent = '2609.13269';
+
+        link.innerHTML = ARXIV_MARK;
+        link.append(identifier);
+
         return link;
     }
 
