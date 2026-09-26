@@ -513,6 +513,8 @@ Two independent registries. **Any gesture fires any effect**, selected on its ro
 | **Palm push** | Apparent span grows 25% in 300 ms | Flash |
 | **Two fingers** | Index and middle extended and separated, palm squarely presented, held 420 ms | Chromatic split |
 
+One row is set apart from the other four. **Palm flip is the gesture the paper proves**, so its row carries the arXiv mark and opens the paper.
+
 <div align="center">
 <br>
 <img src="docs/screenshots/effects_montage.jpg" alt="Four effects rendered by the shipped shaders" width="880">
